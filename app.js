@@ -20,10 +20,25 @@ function getRandomProduct() {
 
 // Make all Products in array
 const allProducts = [
-  new Product("Unspecified Droid Bag", "./img/bag.jpg"),
-  new Product("Fraudulent Banana Slicer", "./img/banana.jpg"),
-  new Product("iWiper", "./img/bathroom.jpg"),
-  // Add more product entries as needed
+  new Product("bag", "bag.jpg"),
+  new Product("banana", "banana.jpg"),
+  new Product("bathroom", "bathroom.jpg"),
+  new Product("boots", "boots.jpg"),
+  new Product("breakfast", "breakfast.jpg"),
+  new Product("bubblegum", "bubblegum.jpg"),
+  new Product("chair", "chair.jpg"),
+  new Product("cthulhu", "cthulhu.jpg"),
+  new Product("dog-duck", "dog-duck.jpg"),
+  new Product("dragon", "dragon.jpg"),
+  new Product("pen", "pen.jpg"),
+  new Product("pet-sweep", "pet-sweep.jpg"),
+  new Product("scissors", "scissors.jpg"),
+  new Product("shark", "shark.jpg"),
+  new Product("sweep", "sweep.png"),
+  new Product("tauntaun", "tauntaun.jpg"),
+  new Product("unicorn", "unicorn.jpg"),
+  new Product("water-can", "water-can.jpg"),
+  new Product("wine-glass", "wine-glass.jpg"),
 ];
 
 // Function to render 3 random Products
@@ -89,8 +104,52 @@ function handleProductVote(event) {
 
 // Function to display results
 function displayResults() {
-  // Calculate and display results (you can use charting libraries for this)
-  // Example: Display a chart with the results
+  // Create a modal container
+  const modal = document.createElement("div");
+  modal.className = "modal";
+
+  // Create a modal content div
+  const modalContent = document.createElement("div");
+  modalContent.className = "modal-content";
+
+  // Create a close button for the modal
+  const closeButton = document.createElement("span");
+  closeButton.className = "close-button";
+  closeButton.textContent = "X";
+  closeButton.addEventListener("click", closeResultsModal);
+
+  // Create a results heading
+  const resultsHeading = document.createElement("h2");
+  resultsHeading.textContent = "Voting Results";
+
+  // Create a list to display results
+  const resultsList = document.createElement("ul");
+
+  // Loop through allProducts and create list items for each product
+  allProducts.forEach((product) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${product.name}: ${product.votes} votes (Viewed ${product.views} times)`;
+    resultsList.appendChild(listItem);
+  });
+
+  // Append elements to the modal content
+  modalContent.appendChild(closeButton);
+  modalContent.appendChild(resultsHeading);
+  modalContent.appendChild(resultsList);
+
+  // Append modal content to the modal container
+  modal.appendChild(modalContent);
+
+  // Append the modal to the body
+  document.body.appendChild(modal);
+}
+
+// Function to close the results modal
+function closeResultsModal() {
+  const modal = document.querySelector(".modal");
+  if (modal) {
+    modal.remove();
+  }
 }
 
 // Add event listeners
