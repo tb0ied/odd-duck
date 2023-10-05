@@ -73,6 +73,12 @@ button {
   cursor: pointer;
 }
 
+/* test */
+button:hover {
+  background-color: goldenrod;
+  transform: scale(1);
+}
+
 button.hidden {
   display: none;
 }

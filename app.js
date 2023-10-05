@@ -1,3 +1,5 @@
+const canvas = document.getElementById("myChart");
+
 // Sort out DOM Nodes
 let productContainer = document.querySelector(".product-container");
 let image1 = document.querySelector("#left-img");
@@ -12,6 +14,32 @@ function Product(name, src) {
   this.views = 0;
   this.votes = 0;
 }
+
+// // myChart
+// const ctx = document.getElementById("myChart");
+
+// new Chart(ctx, {
+//   type: "bar",
+//   data: {
+//     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+//     datasets: [
+//       {
+//         label: "# of Votes",
+//         data: [12, 19, 3, 5, 2, 3],
+//         borderWidth: 1,
+//       },
+//     ],
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//       },
+//     },
+//   },
+// });
+
+// // end of myChart
 
 // Function to choose a random Product
 function getRandomProduct() {
@@ -70,18 +98,21 @@ function renderProducts() {
   allProducts[randomProduct2].views++;
   allProducts[randomProduct3].views++;
 }
+renderProducts();
 
 // Function to collect votes
 function handleProductVote(event) {
-  // Get the name of the voted product
-  let votedProduct = event.target.alt;
+  // let votedProduct = event.target.alt;
 
   // Check if the click is on a valid image
   if (event.target === productContainer) {
-    alert("You must vote for a product or face redundancy.");
+    alert("You must vote for a product.");
   } else {
     renderProducts();
+    // renderChart();
   }
+  // Get the name of the voted product
+  let votedProduct = event.target.alt;
 
   // Loop through allProducts
   for (let i = 0; i < allProducts.length; i++) {
@@ -97,7 +128,7 @@ function handleProductVote(event) {
     (total, product) => total + product.votes,
     0
   );
-  if (totalVotes === 25) {
+  if (totalVotes === 5) {
     viewResultsButton.classList.remove("hidden");
   }
 }
@@ -157,4 +188,8 @@ productContainer.addEventListener("click", handleProductVote);
 viewResultsButton.addEventListener("click", displayResults);
 
 // Render initial products
-renderProducts();
+// renderProducts();
+
+// create a chart function
+
+// function renderChart()
